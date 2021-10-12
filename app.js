@@ -1,6 +1,10 @@
 const express               = require("express");
 const app                   = express();
-let   server                = require("http").Server(app);
+
+const fs                    = require("fs");
+const options               = {key: fs.readFileSync("content-tools.tumo.world.key"), cert: fs.readFileSync("content-tools.tumo.world.crt")};
+let   server                = require("https").Server(options, app);
+
 const fileUpload            = require('express-fileupload');
 const users_auth            = require("./Users_Authentication/ua_api_users");
 const users_post            = require("./Users_Post/up_api");
@@ -23,9 +27,6 @@ app.use(fileUpload());
 app.use('/4climat'              , users_auth);
 app.use('/4climat/posts'        , users_post);
 app.use('/4climat/images'       , users_images);
-
-
-
 
 module.exports    = app;
 
