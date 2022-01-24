@@ -2,7 +2,7 @@ const express               = require("express");
 const app                   = express();
 
 const fs                    = require("fs");
-const options               = {key: fs.readFileSync("content-tools.tumo.world.key"), cert: fs.readFileSync("content-tools.tumo.world.crt")};
+const options               = {key: fs.readFileSync("../cert/live/content-tools.tumo.world/privkey.pem"), cert: fs.readFileSync("../cert/live/content-tools.tumo.world/fullchain.pem")};
 let   server                = require("https").Server(options, app);
 
 const fileUpload            = require('express-fileupload');
